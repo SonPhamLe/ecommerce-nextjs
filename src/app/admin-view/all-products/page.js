@@ -3,9 +3,9 @@ import { getAllAdminProducts } from "@/services/product";
 
 
 
-export default async function AdminAllProducts() {
+export default async function AdminAllProducts(context) {
 
-  const allAdminProducts = await getAllAdminProducts()
+  const allAdminProducts = await getAllAdminProducts(parseInt(context.searchParams.page))
 
-  return <CommonListing data={allAdminProducts && allAdminProducts.data}/>
+  return <CommonListing currentPage={parseInt(context.searchParams.page)} totalPage={allAdminProducts.totalPage} data={allAdminProducts && allAdminProducts.data}/>
 }
